@@ -1,0 +1,105 @@
+<title>Browsing Merchandise</title>
+<main class="content">
+  <H1 id="center" class="title"><strong>Merchandise</strong></H1>
+<div id="nav-container">
+  <div id="button" class="next-to post"><a href="customers">Customers</a></div>
+  <div id="button" class="next-to post"><a href="transactions">Transactions</a></div>
+  <div id="button" class="next-to post"><a href="favorites">Favorites</a></div>
+  <div id="button" class="next-to post"><a href="transactionDetails">Trans. Details</a></div>
+
+</div>
+  <div id="table-container" class="overflow">
+    <table class="center-table" >
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Condition</th>
+          <th>Size</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.merchandiseID}}</td>
+            <td>{{this.merchandiseName}}</td>
+            <td>{{this.merchandiseCategory}}</td>
+            <td>{{this.merchandisePrice}}</td>
+            <td>{{this.merchandiseCondition}}</td>
+            <td>{{this.size}}</td>
+            <td><button type="button" id="toggle-edit">Edit</button></td>
+            <td><button type="button" id="toggle-delete">Delete</button></td>
+        </tr>
+        {{/each}}
+        </tbody>    
+        
+      </table>
+  </div>
+
+  <button type="button" id="new-record-button">New Merchandise</button>
+
+
+  <div id="insert" class="hidden">
+    <form method="POST" id="add-merchandise-form-ajax">
+      <legend><strong>Insert Merchandise</strong></legend>
+      <fieldset class="fields">
+        <div><label>Name:  </label> <input type="text" name="merch-name" id="input-merch-name"></div>
+        <div><label>Category:  </label> <input type="text" name="category" id="input-category"></div>
+        <div><label>Price:  </label> <input type="text" name="price" id="input-price"></div>
+        <div><label>Condition: </label> <input type="text" name="condition" id="input-condition"></div>
+        <div><label>Size: </label> <input type="text" name="size" id="input-size"></div>
+        <div>
+          <input class="btn" type="button" value="submit">
+          <input class="btn" type="button" value="Cancel" id="Cancel">
+        </div>
+      
+      </fieldset>
+    </form>
+  </div>
+
+  <div id="update" class="hidden">
+    <form method="POST" id="update-merchandise">
+      <legend><strong>Update Merchandise</strong></legend>
+      <fieldset class="fields">
+        <label> Merchandise:</label> <select name="name">
+          <option value="0" selected>Levi's darkwash Jeans</option>
+          <option value="1" >Nike Dunk Panda</option>
+          <option value="2" >Vintage Budweiser Shirt</option>
+          <option value="3" >The North Face Puffer Jacket</option>
+          <option value="4" >Patagonia Trucker Hat</option>
+          <option value="5" >Pink Willie Nelson Tee</option>
+          <option value="6" >Travis Scott Playstation Pants</option>
+          <option value="7" >Club C Reebok</option>
+          <option value="8">Nike Elite Socks</option>
+        </select>
+        <div><label>Name:  </label> <input type="text" name="merch-name" id="update-merch-name"></div>
+        <div><label>Category:  </label> <input type="text" name="category" id="update-category"></div>
+        <div><label>Price:  </label> <input type="text" name="price" id="update-price"></div>
+        <div><label>Condition: </label> <input type="text" name="condition" id="update-condition"></div>
+        <div><label>Size: </label> <input type="text" name="size" id="update-size"></div>
+      </fieldset>
+    </form>
+  </div>
+  
+  <div id="delete" class="hidden">
+    <form method="POST" id="deleteMerch">
+        <legend><strong>Delete Merchandise</strong></legend>
+            <fieldset class="fields">
+            <p>Are you sure you wish to delete the following?</p>
+            <input type="hidden" name="merchandiseID" id="deletemerchandiseID" value="1">
+            <label><strong>ID:</strong></label> 1
+            <label> <strong>Name</strong> </label> Levi's Darkwash Jeans
+            <div>
+              <input class="btn" type="submit" id="DeleteMerch" value="Delete Merchandise">
+              <input class="btn" type="button" value="cancel">
+            </div>
+      </fieldset>
+      
+    </form> 
+  </div>
+  
+</main>

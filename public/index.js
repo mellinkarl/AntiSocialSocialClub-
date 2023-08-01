@@ -1,25 +1,56 @@
-//THIS CODE IS HANDWRITTEN, THE CODE PRESENT IS TO TOGGLE THE DIFFERENT FORMS FROM HIDDEN TO SHOWING
-//3/20/2023
 
 
 function insertButtonClickHandler(event){
     var insert = document.getElementById("insert")
+    // var update = document.getElementById("update")
+    // var remove = document.getElementById("delete")
     insert.classList.toggle("hidden")
-
+    // update.classList.toggle("hidden")
+    // remove.classList.toggle("hidden")
 }
 
 var addRecordButton = document.getElementById("new-record-button")
 addRecordButton.addEventListener("click", insertButtonClickHandler)
 
 function updateButtonClickHandler(event){
+    // var insert = document.getElementById("insert")
     var update = document.getElementById("update")
-   
+    // var remove = document.getElementById("delete")
+    // insert.classList.toggle("hidden")
     update.classList.toggle("hidden")
-   
+    // remove.classList.toggle("hidden")
 }
 
 var updateRecordButton = document.getElementById("toggle-edit")
 updateRecordButton.addEventListener("click", updateButtonClickHandler)
+
+function deleteButtonClickHandler(event){
+    console.log("DELETE CLICK HANDLER TOGGLED")
+    // var insert = document.getElementById("insert")
+    // var update = document.getElementById("update")
+    var remove = document.getElementById("delete")
+    // insert.classList.toggle("hidden")
+    // update.classList.toggle("hidden")
+    remove.classList.toggle("hidden")
+}
+
+var deleteRecordButton = document.getElementById("toggle-delete")
+deleteRecordButton.addEventListener("click", deleteButtonClickHandler)
+
+
+function createRow(ID, Name, Email, Gender){
+
+    var row = Handlebars.templates.row({
+        customerID: ID,
+        customerName: Name,
+        customerEmail: Email,
+        customerGender: Gender
+    })
+
+    console.log(row)
+    return(row);
+}
+
 
 
 function closeInputForm(){
@@ -56,6 +87,7 @@ function closeInputForm(){
         console.log(input[i] + "\n")
     }
 }
+
 
 var cancelInsert = document.getElementById("Cancel")
 cancelInsert.addEventListener("click", closeInputForm)
