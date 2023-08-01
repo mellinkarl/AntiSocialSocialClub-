@@ -1,0 +1,68 @@
+{{!-- THIS CODE IS HAND WRITTEN WITH SOME OF THE IDEAS BEHIND TABLES AND FORMS COMING FROM THE LECTURE MATERIALS --}}
+
+<title>Browsing Transaction Details</title>
+ <script src="/index.js" charset="utf-8" defer></script>
+ <main class="content">
+  <H1 id="center" class="title"><strong>Transaction Details</strong></H1>
+<div id="nav-container">
+  <div id="button" class="next-to post"><a href="/merchandise">Merchandise</a></div>
+  <div id="button" class="next-to post"><a href="/transactions">Transactions</a></div>
+  <div id="button" class="next-to post"><a href="/favorites">Favorites</a></div>
+  <div id="button" class="next-to post"><a href="/customers">Customers</a></div>
+
+</div>
+    
+
+<div class="overflow">
+  <table id="trans-details-table" class="center-table">
+    <thead>
+
+    <tr>
+        <th>ID</th>
+        <th>Merchandise Name</th>
+        <th>Customer Name</th>
+    </tr>
+    </thead>
+   <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.transactionDetailsID}}>
+            <td>{{this.transactionDetailsID}}</td>
+            <td>{{this.merchandiseName}}</td>
+            <td>{{this.transactionID}}-{{this.customerName}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+  </table>
+</div>
+<div class="button-container">
+  <button type="button" id="new-record-button">New Transaction Details</button>
+</div>
+
+<div>
+  <div id="insert" class="hidden">
+    <form method="POST" action="/add-trans-details">
+      <legend><strong>Insert Transaction Detail</strong></legend>
+      <fieldset> 
+
+        <div><label>Customer Name (with Transaction ID): </label><select name="transactionID">
+        {{#each dropdown1}}
+          <option value="{{this.transactionID}}">{{this.transactionID}}-{{this.customerName}} </option>
+        {{/each}}</select></div>
+        
+        <div><label>Merchandise Name: </label><select name="merchandiseID">
+        {{#each dropdown3}}
+          <option value="{{this.merchandiseID}}">{{this.merchandiseName}} </option>
+        {{/each}}</select></div>
+
+        <div>
+          <input class="btn" type="submit">
+          <input class="btn" type="button" value="Cancel" id="Cancel">
+        </div>
+      </fieldset>
+    </form>
+  </div>
+
+<script src="/delete_customer.js"></script>
+
+</main>

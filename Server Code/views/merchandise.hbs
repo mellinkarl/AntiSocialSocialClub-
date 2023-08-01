@@ -1,0 +1,91 @@
+{{!-- THIS CODE IS HAND WRITTEN WITH SOME OF THE IDEAS BEHIND TABLES AND FORMS COMING FROM THE LECTURE MATERIALS --}}
+<title>Browsing Merchandise</title>
+<script src="/index.js" charset="utf-8" defer></script>
+<main class="content">
+  <H1 id="center" class="title"><strong>Merchandise</strong></H1>
+<div id="nav-container">
+  <div id="button" class="next-to post"><a href="customers">Customers</a></div>
+  <div id="button" class="next-to post"><a href="transactions">Transactions</a></div>
+  <div id="button" class="next-to post"><a href="favorites">Favorites</a></div>
+  <div id="button" class="next-to post"><a href="transactionDetails">Trans. Details</a></div>
+
+</div>
+  <div id="table-container" class="overflow">
+    <table id="merchandise-table" class="center-table" >
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Condition</th>
+          <th>Size</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tbody>
+
+        
+        {{#each data}}
+        <tr data-value={{this.merchandiseID}}>
+            <td>{{this.merchandiseID}}</td>
+            <td>{{this.merchandiseName}}</td>
+            <td>{{this.merchandiseCategory}}</td>
+            <td>{{this.merchandisePrice}}</td>
+            <td>{{this.merchandiseCondition}}</td>
+            <td>{{this.size}}</td>
+            <td><button onclick="deleteMerch({{this.merchandiseID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+        </tbody>    
+        
+      </table>
+  </div>
+
+  
+<div class="button-container">
+  <button type="button" id="new-record-button">New Merchandise</button>
+  <button type="button" id="toggle-edit">Edit a Merchandise</button>
+</div>
+
+
+
+<div id="insert" class="hidden">
+    <form method="POST" action="/add-merchandise">
+      <legend><strong>Insert Merchandise</strong></legend>
+      <fieldset>
+          <div><label>Name:  </label> <input type="text" name="merchandiseName" id="merchandiseName"></div>
+          <div><label>Category:  </label> <input type="text" name="merchandiseCategory" id="merchandiseCategory"></div>
+          <div><label>Price:  </label> <input type="text" name="merchandisePrice" id="merchandisePrice"></div>
+          <div><label>Condition: </label> <input type="text" name="merchandiseCondition" id="merchandiseCondition"></div>
+          <div><label>Size: </label> <input type="text" name="size" id="size"></div>
+          <div>
+          <input class="btn" type="submit">
+          <input class="btn" type="button" value="Cancel" id="Cancel">
+        </div>
+      </fieldset>
+    </form>
+  </div>
+
+
+  <div id="update" class="hidden">
+    <form method="POST" id="update-merchandise" action="/update-merchandise">
+      <legend><strong>Update Merchandise</strong></legend>
+      <fieldset class="fields">
+        <label> Merchandise:</label> <select name="merchandiseName">
+          <option value="test" selected>Select a Merchandise</option>
+          {{#each data}}
+          <option value="{{this.merchandiseName}}">{{this.merchandiseName}}</option>
+          {{/each}}
+        </select>
+        <div><label>Category:  </label> <input type="text" name="merchandiseCategory" id="merchandiseCategory"></div>
+        <div><label>Price:  </label> <input type="text" name="merchandisePrice" id="merchandisePrice"></div>
+        <div><label>Condition: </label> <input type="text" name="merchandiseCondition" id="merchandiseCondition"></div>
+        <div><label>Size: </label> <input type="text" name="size" id="size"></div>
+        <input class="btn" type="submit" value="Submit">
+      </fieldset>
+    </form>
+  </div>
+ 
+  
+  <script src="/delete_merch.js"></script>
+</main>

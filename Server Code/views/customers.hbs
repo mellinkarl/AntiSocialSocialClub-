@@ -1,0 +1,86 @@
+ {{!-- THIS CODE IS HAND WRITTEN WITH SOME OF THE IDEAS BEHIND TABLES AND FORMS COMING FROM THE LECTURE MATERIALS --}}
+ <title>Browsing Customers</title>
+ <script src="/index.js" charset="utf-8" defer></script>
+ <main class="content">
+  <H1 id="center" class="title"><strong>Customers</strong></H1>
+<div id="nav-container">
+  <div id="button" class="next-to post"><a href="/merchandise">Merchandise</a></div>
+  <div id="button" class="next-to post"><a href="/transactions">Transactions</a></div>
+  <div id="button" class="next-to post"><a href="/favorites">Favorites</a></div>
+  <div id="button" class="next-to post"><a href="/transactionDetails">Trans. Details</a></div>
+
+</div>
+    
+
+<div class="overflow">
+  <table id="customer-table" class="center-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th></th>
+    </tr>
+    </thead>
+   <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.customerID}}>
+            <td>{{this.customerID}}</td>
+            <td>{{this.customerName}}</td>
+            <td>{{this.customerEmail}}</td>
+            <td>{{this.customerGender}}</td>
+            <td><button onclick="deletePerson({{this.customerID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+  </table>
+</div>
+<div class="button-container">
+  <button type="button" id="new-record-button">New Customer</button>
+  <button type="button" id="toggle-edit">Edit a Customer</button>
+</div>
+
+
+  
+  <div id="insert" class="hidden">
+    <form method="POST" action="/add-customer">
+      <legend><strong>Insert Customer</strong></legend>
+      <fieldset>
+        <div><label for="input-customer-name">Name:</label> <input type="text" name="customerName" id="input-customer-name"></div>
+        <div><label for="input-email"> Email: </label> <input type="text" name="customerEmail" id="customerEmail"></div>
+        <div><label for="input-gender"> Gender: </label> <input type="text" name="customerGender" id="customerGender"></div>
+        <div>
+          <input class="btn" type="submit">
+          <input class="btn" type="button" value="Cancel" id="Cancel">
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  
+
+  
+  <div id="update" class="hidden">
+    <form method="POST" id="update-customer" action="/update-customer">
+      <legend><strong>Update Customer</strong></legend>
+      <fieldset class="fields">
+        <div id="input"><label> Customer:</label> <select name="customerName" id="mySelect">
+          <option value="test">Select a Person</option>
+          {{#each data}}
+          <option value="{{this.customerName}}">{{this.customerName}} </option>
+          {{/each}}
+        </select></div>
+        <div id="input"><label> Email: </label> <input type="text" name="customerEmail" id="input-email-update"></div>
+        <div id="input"><label> Gender:</label> <select name="customerGender">
+          <option value="test">Select a Gender</option>
+          <option>Male </option>
+          <option>Female </option>
+        </select></div>
+        <input class="btn" type="submit">
+      </fieldset>
+    </form>
+  </div>
+<script src="/delete_customer.js"></script>
+
+</main>

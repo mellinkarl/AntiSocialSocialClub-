@@ -1,0 +1,87 @@
+{{!-- THIS CODE IS HAND WRITTEN WITH SOME OF THE IDEAS BEHIND TABLES AND FORMS COMING FROM THE LECTURE MATERIALS --}}
+<title>Browsing Favorites</title>
+<script src="/index.js" charset="utf-8" defer></script>
+<main class="content">
+  <H1 id="center" class="title"><strong>Favorites</strong></H1>
+<div id="nav-container">
+  <div id="button" class="next-to post"><a href="/customers">Customers</a></div>
+  <div id="button" class="next-to post"><a href="/merchandise">Merchandise</a></div>
+  <div id="button" class="next-to post"><a href="/transactions">Transactions</a></div>
+  <div id="button" class="next-to post"><a href="/transactionDetails">Trans. Details</a></div>
+
+</div>
+  <div id="table-container" class="overflow">
+    <table id="favorite-table" class="center-table" >
+      <tr>
+          <th>ID</th>
+          <th>Customer Name</th>
+          <th>Merchandise Name</th>
+          <th></th>
+          <th></th>
+      </tr>
+      <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.favoriteID}}>
+            <td>{{this.favoriteID}}</td>
+            <td>{{this.customerName}}</td>
+            <td>{{this.merchandiseName}}</td>
+            <td><button onclick="deleteFavorite({{this.favoriteID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+        </tbody>  
+    </table>
+  </div>
+
+<div class="button-container">
+  <button type="button" id="new-record-button">New Favorite</button>
+  <button type="button" id="toggle-edit">Edit a Favorite</button>
+</div>
+
+  <div id="insert" class="hidden">
+      <form method="POST" action="/add-favorite">
+        <legend><strong>Insert Favorite</strong></legend>
+        <fieldset>
+          <div><label>Customer Name:</label> <select name="customerID">
+            <option value="test">Select a Customer</option>
+            {{#each dropdown1}}
+            <option value="{{this.customerID}}">{{this.customerName}}</option>
+            {{/each}}
+            </select></div>
+            <div><label>Merchandise Name: </label> <select name="merchandiseID">
+            <option value="test2">Select a Merchandise</option>
+            {{#each dropdown2}}
+            <option value="{{this.merchandiseID}}">{{this.merchandiseName}}</option>
+            {{/each}}
+          </select></div>
+          <div>
+            <input class="btn" type="submit">
+            <input class="btn" type="button" value="Cancel" id="Cancel">
+         </div>
+        </fieldset>
+      </form>
+  </div>
+
+  <div id="update" class="hidden">
+    <form method="POST" id="update-favorite" action="/update-favorite">
+      <legend><strong>Update Favorite</strong></legend>
+      <fieldset class="fields">
+        <div><label>Customer Name:</label> <select name="favoriteID">
+            <option value="test">Select a Record: </option>
+            {{#each data}}
+            <option value="{{this.favoriteID}}">{{this.customerName}}</option>
+            {{/each}}
+            </select></div>
+          <div><label>Merchandise Name: </label> <select name="merchandiseID">
+            <option value="test2">Select a Merchandise</option>
+            {{#each dropdown2}}
+            <option value="{{this.merchandiseID}}">{{this.merchandiseName}}</option>
+            {{/each}}
+            <option value="NULL">None</option>
+        </select></div>
+        <input class="btn" type="submit" value="Submit">
+      </fieldset>
+    </form>
+  </div>
+<script src="/delete_fav.js"></script>
+</main>
